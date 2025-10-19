@@ -3,7 +3,7 @@ import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export const GraphicsLoadingSkeleton = () => {
     return (
-        <div className="p-4 sm:p-6 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <div className="p-4 sm:p-6 space-y-6 bg-gray-50 dark:bg-slate-800 min-h-screen">
             <div>
                 <Skeleton className="h-8 w-64 mb-2" />
                 <Skeleton className="h-4 w-96" />

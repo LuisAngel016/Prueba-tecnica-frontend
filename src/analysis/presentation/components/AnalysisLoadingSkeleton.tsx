@@ -3,7 +3,7 @@ import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export const AnalysisLoadingSkeleton = () => {
     return (
-        <div className="p-4 sm:p-6 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <div className="p-4 sm:p-6 space-y-6 bg-gray-50 dark:bg-slate-800 min-h-screen">
             {/* Header */}
             <div>
                 <Skeleton className="h-8 w-64 mb-2" />
@@ -13,7 +13,7 @@ export const AnalysisLoadingSkeleton = () => {
             {/* Stat cards */}
             <div className="grid gap-4 md:grid-cols-3">
                 {[1, 2, 3].map((i) => (
-                    <Card key={i}>
+                    <Card className="dark:bg-slate-900" key={i}>
                         <CardHeader>
                             <Skeleton className="h-5 w-40" />
                         </CardHeader>
@@ -26,7 +26,7 @@ export const AnalysisLoadingSkeleton = () => {
             </div>
 
             {/* Summary header */}
-            <Card>
+            <Card className="dark:bg-slate-900">
                 <CardHeader>
                     <Skeleton className="h-7 w-56 mb-2" />
                     <Skeleton className="h-4 w-80" />

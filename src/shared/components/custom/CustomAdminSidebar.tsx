@@ -107,7 +107,7 @@ export const CustomAdminSidebar: React.FC<SidebarProps> = ({ isCollapsed, onTogg
                                 <li key={index}>
                                     <Link
                                         to={item.to || '/admin'}
-                                        className={`flex items-center p-2 rounded-lg transition-all duration-300 group ${isActiveRoute(item.to || '/')
+                                        className={`flex md:gap-1.5 items-center p-2 rounded-lg transition-all duration-300 group ${isActiveRoute(item.to || '/')
                                             ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-semibold'
                                             : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
                                             }`}
