@@ -77,7 +77,6 @@ export const useProjectForm = () => {
                 })
                 return
             }
-            // Validar que la fecha de fin no sea menor a la de inicio
             if (data.startDate && data.endDate) {
                 const start = toLocalDate(data.startDate)
                 const end = toLocalDate(data.endDate)
@@ -112,7 +111,15 @@ export const useProjectForm = () => {
             // Cerrar el modal y resetear el formulario
             setIsDialogOpen(false)
             reset()
-        } catch (error) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            // Interceptar error de duplicado (409)
+            if (error?.response?.status === 409 && error?.response?.data?.error === "Conflicto de duplicado") {
+                toast.info("El nombre de proyecto está inactivo", {
+                    description: "Ya existe un proyecto inactivo con ese nombre."
+                })
+                return;
+            }
             console.error("Error al guardar el proyecto:", error)
             toast.error("Error al guardar el proyecto", {
                 description: editingProject
