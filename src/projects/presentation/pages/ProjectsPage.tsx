@@ -7,7 +7,7 @@ import { ProjectsLoadingSkeleton } from "../components/ProjectsLoadingSkeleton";
 import { useGetProjects, useDeleteProject } from "@/projects/infrastructure/hooks";
 import { createColumns } from "../components/Columns";
 import { useMemo, useState } from "react";
-import { DeleteProjectDialog } from "../components/DeleteProjectDialog";
+import { DeleteProjectModal } from "../components/DeleteProjectModal";
 import type { Project } from "@/projects/domain/entities/project.entity";
 import { toast } from "sonner";
 
@@ -90,7 +90,7 @@ export const ProjectsPage = () => {
                 editingProject={editingProject}
             />
 
-            <DeleteProjectDialog
+            <DeleteProjectModal
                 open={isDeleteDialogOpen}
                 onOpenChange={setIsDeleteDialogOpen}
                 project={projectToDelete}

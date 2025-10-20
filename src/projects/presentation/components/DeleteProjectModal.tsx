@@ -20,7 +20,7 @@ interface DeleteProjectDialogProps {
     isDeleting?: boolean
 }
 
-export const DeleteProjectDialog = ({
+export const DeleteProjectModal = ({
     open,
     onOpenChange,
     project,
