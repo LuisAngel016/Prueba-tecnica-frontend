@@ -24,6 +24,8 @@ function Calendar({
   const defaultClassNames = getDefaultClassNames()
 
   return (
+    // Expand year range so users can pick years beyond current defaults (e.g. >2025)
+    // We set a wide range (currentYear ± 100) to allow historical and future dates.
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
@@ -122,6 +124,9 @@ function Calendar({
         hidden: cn("invisible", defaultClassNames.hidden),
         ...classNames,
       }}
+      // Allow selecting a wide year range
+      fromYear={new Date().getFullYear() - 50}
+      toYear={new Date().getFullYear() + 50}
       components={{
         Root: ({ className, rootRef, ...props }) => {
           return (
