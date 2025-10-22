@@ -65,11 +65,11 @@ export const createColumns = (
         displayName: "Descripción"
       },
       header: "Descripción",
-      cell: ({ row }) => {
-        const description = row.getValue("description") as string
-        const formatted = description.length > 50 ? description.slice(0, 50) + "..." : description
-        return <div className="font-medium">{formatted}</div>
-      },
+      // cell: ({ row }) => {
+      //   const description = row.getValue("description") as string
+      //   const formatted = description.length > 50 ? description.slice(0, 50) + "..." : description
+      //   return <div className="font-medium">{formatted}</div>
+      // },
     },
     {
       accessorKey: "state",

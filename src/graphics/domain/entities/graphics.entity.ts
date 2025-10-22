@@ -1,15 +1,22 @@
-export interface ByState {
-    state: string;
-    count: number;
+export class ByState {
+    constructor(
+        public state: string = '',
+
+        public count: number = 0
+    ) {}
 }
 
-export interface ByStatus {
-    active: number;
-    inactive: number;
+export class ByStatus {
+    constructor(
+        public active: number = 0, 
+        public inactive: number = 0
+    ) {}
 }
 
-export interface Graphics {
-    total: number;
-    byState: ByState[];
-    byStatus: ByStatus;
+export class Graphics {
+    constructor(
+        public total: number = 0,
+        public byState: ByState[] = [],
+        public byStatus: ByStatus = new ByStatus()
+    ) {}
 }

@@ -1,51 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { FileText } from 'lucide-react';
+import { formatSummary } from './summaryFormatter';
 
 interface Props {
     summary?: string;
 }
-
-const formatSummary = (text: string) => {
-    const lines = text.split('\n');
-    return lines.map((line, index) => {
-        if (line.trim().startsWith('###')) {
-            return (
-                <h3 key={index} className="text-xl font-bold text-foreground dark:text-gray-100 mt-6 mb-3">
-                    {line.replace(/^###\s*\*?\*?/, '').replace(/\*?\*?$/, '')}
-                </h3>
-            );
-        }
-        if (line.trim().startsWith('##')) {
-            return (
-                <h2 key={index} className="text-2xl font-bold text-foreground dark:text-gray-100 mt-8 mb-4">
-                    {line.replace(/^##\s*\*?\*?/, '').replace(/\*?\*?$/, '')}
-                </h2>
-            );
-        }
-        if (line.trim().match(/^[*-]\s+\*?\*?/)) {
-            return (
-                <li key={index} className="ml-4 text-muted-foreground dark:text-gray-300 leading-relaxed">
-                    {line.replace(/^[*-]\s+\*?\*?/, '').replace(/\*?\*?:?$/, '')}
-                </li>
-            );
-        }
-        if (line.trim().match(/^\d+\.\s+/)) {
-            return (
-                <li key={index} className="ml-4 text-muted-foreground dark:text-gray-300 leading-relaxed list-decimal">
-                    {line.replace(/^\d+\.\s+\*?\*?/, '').replace(/\*?\*?:?$/, '')}
-                </li>
-            );
-        }
-        if (line.trim() === '' || line.trim() === '---') {
-            return <div key={index} className="h-2" />;
-        }
-        return (
-            <p key={index} className="text-muted-foreground dark:text-gray-300 leading-relaxed mb-2">
-                {line}
-            </p>
-        );
-    });
-};
 
 export const AnalysisSummaryCard = ({ summary }: Props) => (
     <Card className="shadow-lg bg-gradient-to-br from-white/80 to-slate-100/80 dark:from-slate-800/70 dark:to-slate-900/70 border border-slate-200 dark:border-slate-700">

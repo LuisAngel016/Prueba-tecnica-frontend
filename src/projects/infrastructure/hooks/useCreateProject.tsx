@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Project } from "../../domain/entities/project.entity";
-import { container } from "@/shared/ioc";
+import { container } from "@/shared/IoC";
 
 export const useCreateProject = () => {
     const queryClient = useQueryClient();

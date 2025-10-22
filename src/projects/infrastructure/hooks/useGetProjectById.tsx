@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { container } from "@/shared/ioc";
+import { container } from "@/shared/IoC";
 
 export const useGetProjectById = (id: string) => {
     const getProjectByIdUseCase = container.resolve("getProjectByIdUseCase");

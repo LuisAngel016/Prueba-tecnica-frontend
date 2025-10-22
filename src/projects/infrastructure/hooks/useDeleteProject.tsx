@@ -1,4 +1,4 @@
-import { container } from "@/shared/ioc";
+import { container } from "@/shared/IoC";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteProject = () => {

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { container } from '@/shared/ioc/container';
+import { container } from '@/shared/IoC/container';
 
 export const useGetAnalysis = () => {
     const getAnalysisUseCase = container.resolve('getAnalysisUseCase');

@@ -4,16 +4,20 @@ import { ProjectModal } from "../components/ProjectModal";
 import { useProjectForm } from "@/projects/infrastructure/hooks/useProjectForm";
 import { DataTable } from "../components/DataTable";
 import { ProjectsLoadingSkeleton } from "../components/ProjectsLoadingSkeleton";
-import { useGetProjects, useDeleteProject } from "@/projects/infrastructure/hooks";
+import { useGetProjects, useDeleteProjectDialog } from "@/projects/infrastructure/hooks";
 import { createColumns } from "../components/Columns";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { DeleteProjectModal } from "../components/DeleteProjectModal";
-import type { Project } from "@/projects/domain/entities/project.entity";
-import { toast } from "sonner";
 
 export const ProjectsPage = () => {
-    const [projectToDelete, setProjectToDelete] = useState<Project | null>(null)
-    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const {
+        projectToDelete,
+        isDeleteDialogOpen,
+        setIsDeleteDialogOpen,
+        handleDeleteClick,
+        handleConfirmDelete,
+        isDeleting,
+    } = useDeleteProjectDialog();
 
     const {
         isDialogOpen,
@@ -29,34 +33,10 @@ export const ProjectsPage = () => {
     } = useProjectForm();
 
     const { data, isLoading } = useGetProjects();
-    const { mutateAsync: deleteProject, isPending: isDeleting } = useDeleteProject();
 
-    const handleDeleteClick = (project: Project) => {
-        setProjectToDelete(project)
-        setIsDeleteDialogOpen(true)
-    }
 
-    const handleConfirmDelete = async () => {
-        if (!projectToDelete?.id) return
 
-        try {
-            await deleteProject(projectToDelete.id)
-            toast.success("Proyecto eliminado exitosamente", {
-                description: `El proyecto "${projectToDelete.name}" ha sido eliminado correctamente.`,
-            })
-            setIsDeleteDialogOpen(false)
-            setProjectToDelete(null)
-        } catch (error) {
-            console.error("Error al eliminar el proyecto:", error)
-            toast.error("Error al eliminar el proyecto", {
-                description: "No se pudo eliminar el proyecto. Por favor, intenta nuevamente.",
-            })
-        }
-    }
-
-    const columns = useMemo(() => createColumns(openEditDialog, handleDeleteClick), [openEditDialog]);
-
-    console.log(data)
+    const columns = useMemo(() => createColumns(openEditDialog, handleDeleteClick), [openEditDialog, handleDeleteClick]);
 
     if (isLoading) {
         return <ProjectsLoadingSkeleton />;

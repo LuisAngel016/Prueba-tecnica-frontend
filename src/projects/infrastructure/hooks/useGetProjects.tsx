@@ -1,7 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { container } from "@/shared/ioc/container";
+import { container } from "@/shared/IoC/container";
 import type { ProjectPage } from "@/projects/domain/interfaces/appointment-page.interface";
 
 export const useGetProjects = () => {
